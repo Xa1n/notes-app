@@ -1,10 +1,21 @@
 (function(exports) {
-    function NoteController() {
-        // gets id element of "app" and logs to console
-        var elem = document.getElementById('app').innerHTML;  // innerHTML gets the actual html contents inside the element.
-        // changes the value of "app" from "Hello" to "Howdy"
-        console.log(elem);
+    function NoteController(noteList) {
+        this.noteList = noteList;
+        this.noteList.create("Default Note")
+        this.noteListView = new NoteListView(this.noteList)
     };
+
+    NoteController.prototype.insertHTML = function() {
+        var noteListHTML = this.noteListView.getHTML()
+
+          // gets element of "app" id
+        var element = document.getElementById('app');  // innerHTML gets the actual html contents inside the element.
+
+        return element.innerHTML = noteListHTML
+
+        
+    };
+
 
     exports.NoteController = NoteController;
 })(this);
